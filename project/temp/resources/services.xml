@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This file was auto-generated from WSDL -->
+<!-- by the Apache Axis2 version: 1.6.2  Built on : Apr 17, 2012 (05:33:49 IST) -->
+<service name="Subscribers">
+    <parameter name="ServiceClass">Subscribers</parameter>
+    <description>Subscribers Service
+            </description>
+    <operation name="Subscribe" mep="http://www.w3.org/ns/wsdl/in-out">
+        <parameter name="wsamapping">Subscribers#Subscribe</parameter>
+    </operation>
+    <operation name="GenerateTopicEvent" mep="http://www.w3.org/ns/wsdl/in-only">
+        <parameter name="wsamapping">Subscribers#GenerateTopicEvent</parameter>
+    </operation>
+    <operation name="GenerateUnsubscribeEvent" mep="http://www.w3.org/ns/wsdl/in-out">
+        <parameter name="wsamapping">Subscribers#GenerateUnsubscribeEvent</parameter>
+    </operation>
+    <operation name="GetStructure" mep="http://www.w3.org/ns/wsdl/in-out">
+        <parameter name="wsamapping">Subscribers#GetStructure</parameter>
+    </operation>
+    <operation name="Unsubscribe" mep="http://www.w3.org/ns/wsdl/in-out">
+        <parameter name="wsamapping">Subscribers#Unsubscribe</parameter>
+    </operation>
+</service>

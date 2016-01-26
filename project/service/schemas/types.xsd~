@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<schema
+      targetNamespace="http://mopevm.ru/axis2/services/types"
+      xmlns='http://www.w3.org/2001/XMLSchema'
+      xmlns:types="http://mopevm.ru/axis2/services/types" 
+      xmlns:tns="http://mopevm.ru/axis2/services/types"
+      xmlns:xsd='http://www.w3.org/2001/XMLSchema'
+      xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+
+  <element name='topic'>
+    <complexType>
+      <sequence>
+	<element name="name" type="xsd:string" minOccures="1" maxOccures="1"/>
+	<element name="about" type="xsd:string" maxOccures="unbounded"/>
+      </sequence>
+    </complexType>
+  </element>
+
+  <complexType name='message'>
+    <attribute name="errorLevel" type="xsd:int" use="required"/>
+    <sequence>
+      <element name="about" type="xsd:string" maxOccures="unbounded"/>
+    </sequence>
+  </complexType>
+
+  <element name='subscribeResponse'>
+    <complexType>
+      <sequence>
+	<element name="id" type="xsd:int" minOccures="1" maxOccures="1"/>
+	<element name="msg" type="types:message" minOccures="0" maxOccures="unbounded"/>
+      </sequence>
+    </complexType>
+  </element>
+
+  <element name='generateTopicEventRequest'>
+    <complexType>
+      <sequence>
+	<element name="nameOfTopic" type="xsd:string" minOccures="1" maxOccures="1"/>
+	<element name="message" type="xsd:string" minOccures="1" maxOccures="unbounded"/>
+      </sequence>
+    </complexType>
+  </element>
+
+  <element name='generateUnsubscribeEventRequest'>
+    <complexType>
+      <sequence>
+	<element name="number" type="xsd:int" minOccures="1" maxOccures="1"/>
+      </sequence>
+    </complexType>
+  </element>
+
+  <element name='generateUnsubscribeEventResponse'>
+    <complexType>
+      <sequence>
+	<element name="message" type="xsd:string" minOccures="1" maxOccures="unbounded"/>
+      </sequence>
+    </complexType>
+  </element>
+
+  <element name='unsubscribeRequest'>
+    <complexType>
+      <sequence>
+	<element name="id" type="xsd:int" minOccures="1" maxOccures="1"/>
+      </sequence>
+    </complexType>
+  </element>
+
+  <element name='unsubscribeResponse'>
+    <complexType>
+      <sequence>
+	<element name="message" type="xsd:string" minOccures="1" maxOccures="unbounded"/>
+      </sequence>
+    </complexType>
+  </element>
+
+  <element name='subscriberRequest'>
+    <complexType>
+      <sequence>
+        <element name="number" type="xsd:int" minOccures="1" maxOccures="1"/>
+      </sequence>
+    </complexType>
+  </element>
+
+  <element name='subscriber'>
+    <complexType>
+      <sequence>
+	<element name="id" type="xsd:int" nillable="true" minOccures="1" maxOccures="1"/>
+	<element name="nameOfTopic" type="xsd:string" nillable="true" minOccures="1" maxOccures="1"/>
+	<element name="about" type="xsd:string" nillable="true" minOccures="1" maxOccures="1"/>
+	<element name="messages" type="xsd:string" nillable="true" minOccures="0" maxOccures="unbounded"/>
+	<element name="subscriber" type="types:subscriber" nillable="true" minOccures="0" maxOccures="unbounded"/>
+      </sequence>
+    </complexType>
+  </element>
+
+</schema>

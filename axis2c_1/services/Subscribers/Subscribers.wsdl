@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  
+<wsdl:definitions
+  targetNamespace="http://mopevm.ru/axis2/services/Subscribers"
+  xmlns:tns="http://mopevm.ru/axis2/services/Subscribers"
+  xmlns:types="http://mopevm.ru/axis2/services/types" 
+  xmlns:wsdl='http://schemas.xmlsoap.org/wsdl/'
+  xmlns:wsa='http://schemas.xmlsoap.org/ws/2004/08/addressing'
+  xmlns:xsd='http://www.w3.org/2001/XMLSchema'
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+
+<wsdl:types>
+
+
+<schema
+      targetNamespace="http://mopevm.ru/axis2/services/types"
+      xmlns='http://www.w3.org/2001/XMLSchema'>
+      
+  <include schemaLocation="../schemas/types.xsd"/>  
+
+</schema>
+  
+</wsdl:types>
+
+<!-- ############################################# MESSAGES ############################################# -->
+
+<wsdl:message name="SubscribeMsg">
+  <wsdl:part element="types:topic" name="parameter" />
+</wsdl:message>
+
+<wsdl:message name="SubscribeResponseMsg">
+  <wsdl:part element="types:subscribeResponse" name="parameter" />
+</wsdl:message>
+
+<wsdl:message name="GenerateTopicEventMsg">
+  <wsdl:part element="types:generateTopicEventRequest" name="parameter" />
+</wsdl:message>
+
+<wsdl:message name="GenerateUnsubscribeEventRequestMsg">
+  <wsdl:part element="types:generateUnsubscribeEventRequest" name="parameter" />
+</wsdl:message>
+
+<wsdl:message name="GenerateUnsubscribeEventResponseMsg">
+  <wsdl:part element="types:generateUnsubscribeEventResponse" name="parameter" />
+</wsdl:message>
+
+<wsdl:message name="UnsubscribeMsg">
+  <wsdl:part element="types:unsubscribeRequest" name="parameter" />
+</wsdl:message>
+
+<wsdl:message name="UnsubscribeResponseMsg">
+  <wsdl:part element="types:unsubscribeResponse" name="parameter" />
+</wsdl:message>
+
+<!-- ############################################# portType ############################################# -->
+
+<wsdl:portType name="SubscribersPortType">
+
+  <wsdl:operation name="Subscribe">
+    <wsdl:input message="tns:SubscribeMsg" name="SubscribersSubscribe"/>
+    <wsdl:output message="tns:SubscribeResponseMsg" name="SubscribersSubscribeResponse"/>
+  </wsdl:operation>  
+
+  <wsdl:operation name="GenerateTopicEvent">
+    <wsdl:input message="tns:GenerateTopicEventMsg" name="SubscribersGenerateTopicEvent"/>
+  </wsdl:operation> 
+
+  <wsdl:operation name="GenerateUnsubscribeEvent">
+    <wsdl:input message="tns:GenerateUnsubscribeEventRequestMsg" name="SubscribersGenerateUnsubscribeEventRequest"/>
+    <wsdl:output message="tns:GenerateUnsubscribeEventResponseMsg" name="SubscribersGenerateUnsubscribeEventResponse"/>
+  </wsdl:operation> 
+
+  <wsdl:operation name="Unsubscribe">
+    <wsdl:input message="tns:UnsubscribeMsg" name="SubscribersUnsubscribe"/>
+    <wsdl:output message="tns:UnsubscribeResponseMsg" name="SubscribersUnsubscribeResponse"/>
+  </wsdl:operation> 
+
+</wsdl:portType>
+
+<!-- ############################################# binding ############################################# -->
+
+<wsdl:binding name="SubscribersBinding" type="tns:SubscribersPortType">
+  
+  <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+  
+  <wsdl:operation name="Subscribe">
+    <soap:operation soapAction="Subscribers#Subscribe"/>
+    <wsdl:input name="SubscribersSubscribe">
+      <soap:body use="literal"/>
+    </wsdl:input>
+    <wsdl:output name="SubscribersSubscribeResponse">
+      <soap:body use="literal"/>
+    </wsdl:output>
+  </wsdl:operation>
+
+  <wsdl:operation name="GenerateTopicEvent">
+    <soap:operation soapAction="Subscribers#GenerateTopicEvent"/>
+    <wsdl:input name="SubscribersGenerateTopicEvent">
+      <soap:body use="literal"/>
+    </wsdl:input>
+  </wsdl:operation>
+
+  <wsdl:operation name="GenerateUnsubscribeEvent">
+    <soap:operation soapAction="Subscribers#GenerateUnsubscribeEvent"/>
+    <wsdl:input name="SubscribersGenerateUnsubscribeEventRequest">
+      <soap:body use="literal"/>
+    </wsdl:input>
+    <wsdl:output name="SubscribersGenerateUnsubscribeEventResponse">
+      <soap:body use="literal"/>
+    </wsdl:output>
+  </wsdl:operation>  
+
+  <wsdl:operation name="Unsubscribe">
+    <soap:operation soapAction="Subscribers#Unsubscribe"/>
+    <wsdl:input name="SubscribersUnsubscribe">
+      <soap:body use="literal"/>
+    </wsdl:input>
+    <wsdl:output name="SubscribersUnsubscribeResponse">
+      <soap:body use="literal"/>
+    </wsdl:output>
+  </wsdl:operation>
+
+</wsdl:binding>
+
+<!-- ############################################# service ############################################# -->
+
+<wsdl:service name="Subscribers">
+  <wsdl:port binding="tns:SubscribersBinding" name="Subscribers_SOAPport_http">
+    <soap:address location="http://localhost:9090/axis2/services/Subscribers"/>
+  </wsdl:port>
+</wsdl:service>
+
+</wsdl:definitions>
